@@ -7,7 +7,12 @@ on:
   push:
     branches:
       - main
-
+# 2. Change these variables for your configuration:
+env:
+ 
+  AZURE_WEBAPP_PACKAGE_PATH: './publish'      # set this to the path to your web app project
+ 
+  
 jobs:
   build-and-deploy:
     runs-on: 'windows-latest'
@@ -21,4 +26,4 @@ jobs:
         app-name: 'classicasp106'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_9d73a543d2e94b568baccb1e7fc7059d }}
-        package: ./published/
+        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
